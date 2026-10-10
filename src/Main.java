@@ -75,7 +75,7 @@ void main() throws IOException {
 
         } else if (opcion == 6) {
 
-            // Exportar a XML
+            escribirDatos.exportarJuegos(lista);
 
         } else if (opcion == 0) {
 

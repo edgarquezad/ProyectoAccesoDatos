@@ -1,6 +1,7 @@
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 
 public class escribirDatos {
 
@@ -26,6 +27,20 @@ public class escribirDatos {
             System.out.println("Error al guardar el videojuego.");
             e.printStackTrace();
         }
+    }
+
+    public static void exportarJuegos(listaJuegos listaJuegos) {
+        try{
+            XStream xstream = new XStream(new DomDriver());
+            xstream.alias("listaJuego", listaJuegos.class);
+            xstream.alias("videojuego", videoJuegos.class);
+            xstream.addImplicitCollection(listaJuegos.class, "lista");
+            xstream.toXML(listaJuegos,new FileOutputStream("videojuegos.xml"));
+            System.out.println("creado el videojuegos.xml");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
 

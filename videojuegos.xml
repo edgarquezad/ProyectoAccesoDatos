@@ -1,0 +1,12 @@
+<listaJuego>
+  <videojuego>
+    <id>1</id>
+    <titulo>estoes</titulo>
+    <precio>23.0</precio>
+  </videojuego>
+  <videojuego>
+    <id>3</id>
+    <titulo>edt</titulo>
+    <precio>23.0</precio>
+  </videojuego>
+</listaJuego>
