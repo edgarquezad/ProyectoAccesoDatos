@@ -2,9 +2,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 void main() throws IOException {
-
     Scanner sc = new Scanner(System.in);
-
     listaJuegos lista = new listaJuegos();
     leerDatos.leervideoJuego(lista);
 
@@ -48,30 +46,32 @@ void main() throws IOException {
         } else if (opcion == 2) {
             System.out.println("---Biblioteca actual de juegos--- \n");
 
-         leerDatos.leervideoJuego(lista);
+            leerDatos.leervideoJuego(lista);
 
         } else if (opcion == 3) {
 
             System.out.println("escribe el titulo del juego a buscar o el id :  \n");
             String busqueda = sc.nextLine();
 
-            if(busqueda.matches("[0-9]+")){
+            if (busqueda.matches("[0-9]+")) {
                 int id = Integer.parseInt(busqueda);
-                leerDatos.buscarVideoJuego(lista,null,id);
-            }else {
-                leerDatos.buscarVideoJuego(lista,busqueda,-1);
+                leerDatos.buscarVideoJuego(lista, null, id);
+            } else {
+                leerDatos.buscarVideoJuego(lista, busqueda, -1);
             }
 
 
-
-
         } else if (opcion == 4) {
+            System.out.println("id del juego a modificar");
 
-            // Modificar videojuego1
+            int id = Integer.parseInt(sc.nextLine());
+            leerDatos.modificarJuego(lista, id);
 
         } else if (opcion == 5) {
+            System.out.println("id del juego a eliminar");
+            int id = Integer.parseInt(sc.nextLine());
+            leerDatos.eliminarJuego(lista, id);
 
-            // Eliminar videojuego
 
         } else if (opcion == 6) {
 

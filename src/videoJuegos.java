@@ -1,6 +1,7 @@
 import java.io.Serializable;
 
 public class videoJuegos implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private int id;
     private String titulo;
@@ -12,6 +13,18 @@ public class videoJuegos implements Serializable {
         this.titulo = titulo;
         this.precio = precio;
 
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {

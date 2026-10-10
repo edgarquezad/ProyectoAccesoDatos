@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Scanner;
 
 public class leerDatos {
 
@@ -37,7 +38,6 @@ public class leerDatos {
     }
 
 
-
     public static void buscarVideoJuego(listaJuegos listaJuegos, String tituloNombre, int id) {
 
         boolean encontrado = false;
@@ -61,6 +61,58 @@ public class leerDatos {
             System.out.println("Videojuego no encontrado.");
         }
     }
+
+    public static void modificarJuego(listaJuegos listaJuegos, int id) {
+        boolean encontrado = false;
+        Scanner sc = new Scanner(System.in);
+        for (videoJuegos videoJuegos : listaJuegos.getLista()) {
+            if (videoJuegos.getId() == id) {
+
+                System.out.println(videoJuegos);
+
+                System.out.println("introduce el nuevo titulo : ");
+                String nuevoTitulo = sc.nextLine();
+
+                System.out.println("introduce el nuevo precio : ");
+                double precio = sc.nextDouble();
+                //modificamos el precio con el metodo set en la clase videojuego
+                videoJuegos.setTitulo(nuevoTitulo);
+                videoJuegos.setPrecio(precio);
+
+
+                escribirDatos.guardarVideojuego(listaJuegos);
+                System.out.println("modificado correctamente ");
+                encontrado = true;
+                break;
+
+
+            }
+        }
+        if (!encontrado) {
+            System.out.println("Videojuego no encontrado.");
+        }
+
+    }
+
+    public static void eliminarJuego(listaJuegos listaJuegos, int id) {
+        boolean encontrado = false;
+        for (videoJuegos videoJuegos : listaJuegos.getLista()) {
+            if (videoJuegos.getId() == id) {
+                listaJuegos.getLista().remove(videoJuegos);
+                escribirDatos.guardarVideojuego(listaJuegos);
+                System.out.println(videoJuegos.getTitulo() + " eliminado correctamente");
+                encontrado = true;
+                break;
+            }
+
+
+        }
+        if(!encontrado) {
+            System.out.println("Videojuego no encontrado.");
+        }
+    }
+
+
 }
 
 
