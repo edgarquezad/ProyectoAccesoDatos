@@ -18,8 +18,6 @@ public class leerDatos {
               System.out.println(juego);
           }
 
-
-
             objeto.close();
             fichero.close();
 
@@ -32,6 +30,23 @@ public class leerDatos {
 
         }
 
+    }
+
+
+
+    public static void buscarVideoJuego(listaJuegos  listaJuegos , int id) {
+        boolean encontrado = false;
+        for (videoJuegos videoJuegos : listaJuegos.getLista()) {
+            if (videoJuegos.getId() == id) {
+                System.out.println(videoJuegos);
+                encontrado = true;
+
+            }
+            else {
+                System.out.println(videoJuegos + " no encontrado fck");
+            }
+
+        }
     }
 
 

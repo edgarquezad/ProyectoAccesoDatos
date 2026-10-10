@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class listaJuegos implements Serializable {
-    private List<videoJuegos> lista = new ArrayList<videoJuegos>();
+    public List<videoJuegos> lista = new ArrayList<videoJuegos>();
 
     public listaJuegos(){
     }

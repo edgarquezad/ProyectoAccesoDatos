@@ -50,7 +50,12 @@ void main() throws IOException {
 
         } else if (opcion == 3) {
 
-            // Buscar videojuego
+            System.out.println("escribe el titulo del juego a buscar :  \n");
+
+          int titulo = Integer.parseInt(sc.nextLine());
+            leerDatos.buscarVideoJuego(lista,titulo);
+
+
 
         } else if (opcion == 4) {
 
