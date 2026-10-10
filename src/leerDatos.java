@@ -2,7 +2,7 @@ import java.io.*;
 
 public class leerDatos {
 
-    public static void leervideoJuego() {
+    public static void leervideoJuego(listaJuegos lista) {
 
         try {
 
@@ -12,15 +12,17 @@ public class leerDatos {
             ObjectInputStream objeto =
                     new ObjectInputStream(fichero);
 
-            listaJuegos listaJuegos = (listaJuegos) objeto.readObject();
+            listaJuegos listaJuegos =
+                    (listaJuegos) objeto.readObject();
+            lista.getLista().clear();
+            lista.getLista().addAll(listaJuegos.getLista());
 
-          for(videoJuegos juego : listaJuegos.getLista()) {
-              System.out.println(juego);
-          }
+            for (videoJuegos juego : listaJuegos.getLista()) {
+                System.out.println(juego);
+            }
 
             objeto.close();
             fichero.close();
-
 
 
         } catch (IOException | ClassNotFoundException e) {
@@ -33,16 +35,26 @@ public class leerDatos {
     }
 
 
-
-    public static void buscarVideoJuego(listaJuegos  listaJuegos , int id) {
+    public static void buscarVideoJuego(listaJuegos listaJuegos, String tituloNombre, int id) {
         boolean encontrado = false;
         for (videoJuegos videoJuegos : listaJuegos.getLista()) {
-            if (videoJuegos.getId() == id) {
+            if (videoJuegos.getTitulo().equalsIgnoreCase(tituloNombre)) {
                 System.out.println(videoJuegos);
                 encontrado = true;
 
+            } else if (!encontrado) {
+                System.out.println(videoJuegos + " no encontrado fck");
             }
-            else {
+
+        }
+
+        for (videoJuegos videoJuegos : listaJuegos.getLista()) {
+            if (id != -1 && videoJuegos.getId() == id) {
+                System.out.println(videoJuegos);
+                encontrado = true;
+
+            } else if (!encontrado) {
+
                 System.out.println(videoJuegos + " no encontrado fck");
             }
 

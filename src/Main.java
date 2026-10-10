@@ -46,14 +46,20 @@ void main() throws IOException {
         } else if (opcion == 2) {
             System.out.println("---Biblioteca actual de juegos--- \n");
 
-         leerDatos.leervideoJuego();
+         leerDatos.leervideoJuego(lista);
 
         } else if (opcion == 3) {
 
-            System.out.println("escribe el titulo del juego a buscar :  \n");
+            System.out.println("escribe el titulo del juego a buscar o el id :  \n");
+            String busqueda = sc.nextLine();
 
-          int titulo = Integer.parseInt(sc.nextLine());
-            leerDatos.buscarVideoJuego(lista,titulo);
+            if(busqueda.matches("[0-9]+")){
+                int id = Integer.parseInt(busqueda);
+                leerDatos.buscarVideoJuego(lista,null,id);
+            }else {
+                leerDatos.buscarVideoJuego(lista,busqueda,-1);
+            }
+
 
 
 
