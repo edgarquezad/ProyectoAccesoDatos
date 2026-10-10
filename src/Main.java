@@ -6,6 +6,9 @@ void main() throws IOException {
     listaJuegos lista = new listaJuegos();
     leerDatos.leervideoJuego(lista);
 
+    listaCategorias listaCategorias = new listaCategorias();
+    leerDatos.leerCategorias(listaCategorias);
+
     int opcion = -1;
 
     while (opcion != 0) {
@@ -18,6 +21,7 @@ void main() throws IOException {
         System.out.println("4 = Modificar videojuego");
         System.out.println("5 = Eliminar videojuego");
         System.out.println("6 = Exportar videojuegos a XML");
+        System.out.println("7 = Agregar Categorias");
 
         System.out.print("\n Ingresa la opción: ");
         String entrada = sc.nextLine();
@@ -36,8 +40,31 @@ void main() throws IOException {
             String titulo = sc.nextLine();
             System.out.println(" escribe un precio para el juego ");
             double precio = Double.parseDouble(sc.nextLine());
+            if (listaCategorias.getListaCategoria().isEmpty()) {
+                System.out.println("No hay categorías creadas. Crea una categoría primero.");
+                continue;
+            }
 
-            videoJuegos Juegos = new videoJuegos(id, titulo, precio);
+            System.out.println("categorias disponibles");
+
+            for (categoria categoria : listaCategorias.getListaCategoria()) {
+                System.out.println(categoria);
+            }
+            System.out.println("escribir el id de la categoria");
+            int categoriaId = Integer.parseInt(sc.nextLine());
+            categoria categoriaElegida = null ;
+            for (categoria categoria : listaCategorias.getListaCategoria()) {
+                if (categoria.getIdCategoria() == categoriaId) {
+                    categoriaElegida = categoria;
+                    break;
+                }
+            }
+            if (categoriaElegida == null) {
+                System.out.println("No se encontro la categoria");
+                continue;
+            }
+
+            videoJuegos Juegos = new videoJuegos(id, titulo, precio,categoriaElegida);
             lista.addJuegos(Juegos);
 
             escribirDatos.guardarVideojuego(lista);
@@ -77,7 +104,23 @@ void main() throws IOException {
 
             escribirDatos.exportarJuegos(lista);
 
-        } else if (opcion == 0) {
+        } else  if (opcion == 7) {
+            System.out.println(" escribe un id para la categoria ");
+            int id = Integer.parseInt(sc.nextLine());
+            System.out.println(" escribe el nombre para la categoria ");
+            String titulo = sc.nextLine();
+            categoria categoria = new categoria(titulo,id);
+            listaCategorias.addCategoria(categoria);
+
+            escribirDatos.guardarCategoria(listaCategorias);
+        }else  if (opcion == 8) {
+            System.out.println("--categorias --");
+            leerDatos.leerCategorias(listaCategorias);
+
+        }
+
+
+        else if (opcion == 0) {
 
             System.out.println("El programa termina.");
 

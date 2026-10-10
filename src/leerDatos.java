@@ -67,8 +67,7 @@ public class leerDatos {
         Scanner sc = new Scanner(System.in);
         for (videoJuegos videoJuegos : listaJuegos.getLista()) {
             if (videoJuegos.getId() == id) {
-
-                System.out.println(videoJuegos);
+                System.out.println("videojuego encontrado "+ videoJuegos);
 
                 System.out.println("introduce el nuevo titulo : ");
                 String nuevoTitulo = sc.nextLine();
@@ -78,6 +77,31 @@ public class leerDatos {
                 //modificamos el precio con el metodo set en la clase videojuego
                 videoJuegos.setTitulo(nuevoTitulo);
                 videoJuegos.setPrecio(precio);
+                listaCategorias listaCategorias = new listaCategorias();
+                leerCategorias(listaCategorias);
+
+                if(!listaCategorias.getListaCategoria().isEmpty()){
+                    System.out.println("categorias disponibles");
+                    for (categoria categoria : listaCategorias.getListaCategoria()) {
+                        System.out.println(categoria);
+                    }
+                    System.out.println("introduce el id de la nueva categoria: ");
+                    int idCategoria = sc.nextInt();
+                    categoria categoriaElegida = null;
+
+                    for (categoria categoria : listaCategorias.getListaCategoria()) {
+                        if (categoria.getIdCategoria() == idCategoria) {
+                            categoriaElegida = categoria;
+                            break;
+                        }
+                    }
+                    if(categoriaElegida!=null){
+                        videoJuegos.setCategoria(categoriaElegida);
+                    }else {
+                        System.out.println("Categoria no encontrada.");
+                    }
+
+                }
 
 
                 escribirDatos.guardarVideojuego(listaJuegos);
@@ -111,6 +135,53 @@ public class leerDatos {
             System.out.println("Videojuego no encontrado.");
         }
     }
+
+    ///////////////7777
+
+
+    public static void leerCategorias(listaCategorias lista) {
+        File archivo = new File("categorias.dat");
+
+        if (!archivo.exists() || archivo.length() == 0) {
+            return;
+        }
+
+        try {
+            FileInputStream fichero = new FileInputStream("categorias.dat");
+            ObjectInputStream objeto = new ObjectInputStream(fichero);
+
+            listaCategorias listaCategorias = (listaCategorias) objeto.readObject();
+
+            lista.getListaCategoria().clear();
+            lista.getListaCategoria().addAll(listaCategorias.getListaCategoria());
+
+            for (categoria categoria : listaCategorias.getListaCategoria()) {
+                System.out.println(categoria);
+            }
+
+            objeto.close();
+            fichero.close();
+
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error al leer las categorías.");
+            e.printStackTrace();
+        }
+    }
+
+    public static void mostrarCategorias(listaCategorias listaCategorias) {
+        if (listaCategorias.getListaCategoria().isEmpty()) {
+            System.out.println("No hay categorías guardadas.");
+            return;
+        }
+
+        System.out.println("--- Lista de categorías ---");
+
+        for (categoria categoria : listaCategorias.getListaCategoria()) {
+            System.out.println(categoria);
+        }
+    }
+
+
 
 
 }

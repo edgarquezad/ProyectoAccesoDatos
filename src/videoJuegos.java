@@ -6,13 +6,23 @@ public class videoJuegos implements Serializable {
     private int id;
     private String titulo;
     private double precio;
+    private categoria categoria;
 
 
-    public videoJuegos(int id, String titulo, double precio) {
+    public videoJuegos(int id, String titulo, double precio ,categoria categoria) {
         this.id = id;
         this.titulo = titulo;
         this.precio = precio;
+        this.categoria = categoria;
 
+    }
+
+    public categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(categoria categoria) {
+        this.categoria = categoria;
     }
 
     public void setPrecio(double precio) {
@@ -44,7 +54,8 @@ public class videoJuegos implements Serializable {
     public String toString() {
         return "ID: " + id +
                 " | Título: " + titulo +
-                " | Precio: " + precio ;
+                " | Precio: " + precio +
+                " | Categoria: " + categoria ;
     }
 }
 

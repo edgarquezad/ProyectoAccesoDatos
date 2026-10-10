@@ -1,12 +1,25 @@
 <listaJuego>
   <videojuego>
     <id>1</id>
-    <titulo>estoes</titulo>
-    <precio>23.0</precio>
+    <titulo>ED</titulo>
+    <precio>12.0</precio>
+    <categoria>
+      <idCategoria>1</idCategoria>
+      <titulo>accion</titulo>
+    </categoria>
   </videojuego>
   <videojuego>
     <id>3</id>
     <titulo>edt</titulo>
     <precio>23.0</precio>
+  </videojuego>
+  <videojuego>
+    <id>10</id>
+    <titulo>prueba32</titulo>
+    <precio>32.0</precio>
+    <categoria>
+      <idCategoria>1</idCategoria>
+      <titulo>accion</titulo>
+    </categoria>
   </videojuego>
 </listaJuego>

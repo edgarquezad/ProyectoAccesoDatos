@@ -29,6 +29,24 @@ public class escribirDatos {
         }
     }
 
+    public static void guardarCategoria(listaCategorias listaCategorias) {
+        try {
+            FileOutputStream fichero = new FileOutputStream("categorias.dat");
+            ObjectOutputStream objeto = new ObjectOutputStream(fichero);
+
+            objeto.writeObject(listaCategorias);
+
+            objeto.close();
+            fichero.close();
+
+            System.out.println("Categorías guardadas correctamente.");
+        } catch (IOException e) {
+            System.out.println("Error al guardar las categorías.");
+            e.printStackTrace();
+        }
+
+    }
+
     public static void exportarJuegos(listaJuegos listaJuegos) {
         try{
             XStream xstream = new XStream(new DomDriver());
