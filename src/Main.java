@@ -4,7 +4,9 @@ import java.util.Scanner;
 void main() throws IOException {
 
     Scanner sc = new Scanner(System.in);
+
     listaJuegos lista = new listaJuegos();
+    leerDatos.leervideoJuego(lista);
 
     int opcion = -1;
 
@@ -37,8 +39,8 @@ void main() throws IOException {
             System.out.println(" escribe un precio para el juego ");
             double precio = Double.parseDouble(sc.nextLine());
 
-            videoJuegos videoJuegos = new videoJuegos(id, titulo, precio);
-            lista.addJuegos(videoJuegos);
+            videoJuegos Juegos = new videoJuegos(id, titulo, precio);
+            lista.addJuegos(Juegos);
 
             escribirDatos.guardarVideojuego(lista);
 

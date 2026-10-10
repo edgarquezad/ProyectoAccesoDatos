@@ -4,8 +4,13 @@ public class leerDatos {
 
     public static void leervideoJuego(listaJuegos lista) {
 
-        try {
+        File archivo = new File("videojuegos.dat");
 
+        if (!archivo.exists() || archivo.length() == 0) {
+            return;
+        }
+
+        try {
             FileInputStream fichero =
                     new FileInputStream("videojuegos.dat");
 
@@ -14,6 +19,7 @@ public class leerDatos {
 
             listaJuegos listaJuegos =
                     (listaJuegos) objeto.readObject();
+
             lista.getLista().clear();
             lista.getLista().addAll(listaJuegos.getLista());
 
@@ -24,42 +30,39 @@ public class leerDatos {
             objeto.close();
             fichero.close();
 
-
         } catch (IOException | ClassNotFoundException e) {
-
             System.out.println("Error al leer el videojuego.");
             e.printStackTrace();
-
         }
-
     }
+
 
 
     public static void buscarVideoJuego(listaJuegos listaJuegos, String tituloNombre, int id) {
+
         boolean encontrado = false;
+
         for (videoJuegos videoJuegos : listaJuegos.getLista()) {
-            if (videoJuegos.getTitulo().equalsIgnoreCase(tituloNombre)) {
+
+            if (tituloNombre != null &&
+                    videoJuegos.getTitulo().equalsIgnoreCase(tituloNombre)) {
+
                 System.out.println(videoJuegos);
                 encontrado = true;
 
-            } else if (!encontrado) {
-                System.out.println(videoJuegos + " no encontrado fck");
-            }
+            } else if (id != -1 && videoJuegos.getId() == id) {
 
+                System.out.println(videoJuegos);
+                encontrado = true;
+            }
         }
 
-        for (videoJuegos videoJuegos : listaJuegos.getLista()) {
-            if (id != -1 && videoJuegos.getId() == id) {
-                System.out.println(videoJuegos);
-                encontrado = true;
-
-            } else if (!encontrado) {
-
-                System.out.println(videoJuegos + " no encontrado fck");
-            }
-
+        if (!encontrado) {
+            System.out.println("Videojuego no encontrado.");
         }
     }
-
-
 }
+
+
+
+
