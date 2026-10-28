@@ -10,6 +10,7 @@ public class categoria  implements Serializable {
         this.titulo = titulo;
         this.idCategoria = idCategoria;
     }
+    public categoria() {}
 
     public int getIdCategoria() {
         return idCategoria;

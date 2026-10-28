@@ -6,7 +6,8 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 public class escribirDatos {
 
     public static void guardarVideojuego(listaJuegos listaJuegos) {
-
+        System.out.println("Ruta del archivo: " +
+                new File("videojuegos.dat").getAbsolutePath());
         try {
 
             FileOutputStream fichero =
